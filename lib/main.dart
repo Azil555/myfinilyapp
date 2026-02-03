@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'SecondPage.dart'; // для перехода на тест
+import 'SecondPage.dart';
+import 'registerdialog.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,16 +11,35 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const StartPage(),
+      home: StartPage(),
     );
   }
 }
 
-// Стартовое окно с кнопкой "Start Test"
-class StartPage extends StatelessWidget {
+class StartPage extends StatefulWidget {
   const StartPage({super.key});
+
+  @override
+  State<StartPage> createState() => _StartPageState();
+}
+
+class _StartPageState extends State<StartPage> {
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Показываем окно после загрузки страницы
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      showDialog(
+        context: context,
+        barrierDismissible: false, // нельзя закрыть нажатием вне окна
+        builder: (context) => const RegisterDialog(),
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

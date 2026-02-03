@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
+import 'person.dart';
+import 'info.dart';
+import 'settings.dart';
+
+
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -56,29 +61,40 @@ class _HomePageState extends State<HomePage> {
               leading: const Icon(Icons.home),
               title: const Text("Главная"),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const HomePage()),
+                );
               },
             ),
             ListTile(
-              leading: const Icon(Icons.camera_alt),
+              leading: const Icon(Icons.person),
               title: const Text("Сканировать текст"),
               onTap: () {
-                Navigator.pop(context);
-                scanText();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Person()),
+                );
               },
             ),
             ListTile(
               leading: const Icon(Icons.info),
               title: const Text("О приложении"),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Info()),
+                );
               },
             ),
             ListTile(
               leading: const Icon(Icons.settings),
               title: const Text("О приложении"),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Settings()),
+                );
               },
             ),
           ],

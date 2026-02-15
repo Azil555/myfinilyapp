@@ -1,20 +1,8 @@
 import 'package:flutter/material.dart';
-
-class Settings extends StatelessWidget {
-  const Settings({super.key});
-
+class AiPage extends StatelessWidget {
+  const AiPage({super.key});
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Персона"),
-      ),
-      body: const Center(
-        child: Text(
-          "Экран Person",
-          style: TextStyle(fontSize: 20),
-        ),
-      ),
-    );
-  }
+  Widget build(BuildContext context) => const Center(child: Text("AI Page"));
 }
+
+

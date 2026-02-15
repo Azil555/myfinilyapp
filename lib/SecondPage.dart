@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
-import 'homePage.dart'; // для перехода на главную страницу
+import 'homePage.dart'; 
 
 class SecondPage extends StatefulWidget {
-  const SecondPage({super.key});
+  final String name;
+  final String surname;
+  final String email;
+
+  const SecondPage({
+    super.key,
+    required this.name,
+    required this.surname,
+    required this.email,
+  });
 
   @override
   State<SecondPage> createState() => _SecondPageState();
@@ -35,13 +44,13 @@ class _SecondPageState extends State<SecondPage> {
     },
   ];
 
-  // Определение дислексии по результату (пример)
+
   String getDiagnosis() {
     double percent = score / questions.length;
     if (percent < 0.5) {
-      return "Возможно есть признаки дислексии";
+      return "сс";
     } else {
-      return "Дислексия маловероятна";
+      return "Dyslexia is unlikely";
     }
   }
 
@@ -53,7 +62,6 @@ class _SecondPageState extends State<SecondPage> {
         current++;
       });
     } else {
-      // Окно с результатом
       showDialog(
         context: context,
         barrierDismissible: false,
@@ -68,7 +76,7 @@ class _SecondPageState extends State<SecondPage> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       const Text(
-                        "РЕЗУЛЬТАТ ТЕСТА",
+                        "TEST RESULT",
                         style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
@@ -76,7 +84,7 @@ class _SecondPageState extends State<SecondPage> {
                       ),
                       const SizedBox(height: 10),
                       Text(
-                        "Ты набрал(а): $score из ${questions.length}",
+                        "You typed: $score from ${questions.length}",
                         style: const TextStyle(fontSize: 18),
                       ),
                       const SizedBox(height: 10),
@@ -96,7 +104,13 @@ class _SecondPageState extends State<SecondPage> {
                     onPressed: () {
                       Navigator.pushAndRemoveUntil(
                         context,
-                        MaterialPageRoute(builder: (context) => const HomePage()),
+                        MaterialPageRoute(
+                          builder: (context) => HomePage(
+                            name: widget.name,
+                            surname: widget.surname, 
+                            email: widget.email,
+                          ),
+                        ),
                         (route) => false,
                       );
                     },
@@ -113,7 +127,7 @@ class _SecondPageState extends State<SecondPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Тест на дислексию")),
+      appBar: AppBar(title: const Text("The Dyslexia test")),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -144,4 +158,3 @@ class _SecondPageState extends State<SecondPage> {
     );
   }
 }
-
